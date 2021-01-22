@@ -5,9 +5,11 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+// We annonate this Candidate model class with with @Entity to map it to the corresponding table name in MySQL database
 @Entity
 public class Candidate {
 	
+	// @Id indicated that this is a primary key
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long jid;

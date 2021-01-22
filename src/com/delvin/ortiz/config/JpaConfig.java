@@ -10,6 +10,8 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 // Having an EntityManagerFacotry & JpaTransactionManager are the minimum required configuration for using Spring Data JPA
+// @EnableJpaRepositories tells Spring Data JPA to look for repository classes in the package specified
+// @EnableTransactionManagement tells Spring Data JPA to generate transaction code at runtime
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.delvin.ortiz.candidate"})
 @EnableTransactionManagement

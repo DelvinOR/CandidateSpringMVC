@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+// Controller class handles all client requests and
+// Returns a ModelAndView object when needed or a String
+// for the appropriate View component file
 @Controller
 public class CandidateController {
+	
+	// Instance of Customer service is injected
 	@Autowired
 	private CandidateService candidateService;
 	

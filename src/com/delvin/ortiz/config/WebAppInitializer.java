@@ -8,9 +8,13 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-// Class used for configuring Servlet Dispatcher Servlet
+
 public class WebAppInitializer implements WebApplicationInitializer{
 	
+	// In order for Spring MVC to work, we need to register a the DispatcherServlet
+	// We do this with the help of ApplicationContext
+	// DispatcherServlet will handle all request given by teh URL mapping "/" and look
+	// 	inside of the WebMvcConfig class for configuration
 	public void onStartup(ServletContext servletContext) throws ServletException{
 		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
 		appContext.register(WebMvcConfig.class);

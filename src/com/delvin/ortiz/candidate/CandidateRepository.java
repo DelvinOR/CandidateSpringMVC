@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 // Spring Data JPA will automatically generate all of the implementation code
 public interface CandidateRepository extends CrudRepository<Candidate, Long>{
 
+	// We create this "search" abstract method in order to include a JPA query for the specified search_word
 	@Query (value = "SELECT c FROM Candidate c WHERE c.jid LIKE '%' || :search_word || '%'"
 			+ " OR c.name LIKE '%' || :search_word || '%'"
 			+ " OR c.email LIKE '%' || :search_word || '%'" )
