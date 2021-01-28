@@ -29,7 +29,7 @@ import com.delvin.ortiz.config.WebMvcConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestContext.class, WebMvcConfig.class})
 @WebAppConfiguration
-public class CandidateControllerTest {
+public class WebAppContextCandidateControllerTest {
 	
 	private MockMvc mockMvc;
 	
