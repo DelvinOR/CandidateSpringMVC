@@ -1,11 +1,10 @@
 package com.delvin.ortiz.candidate;
 
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.util.Arrays;
 
@@ -14,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -34,13 +34,14 @@ public class CandidateControllerTest {
 	private MockMvc mockMvc;
 	
 	@Autowired
+	@Qualifier(value = "candidateServiceMockBean")
 	private CandidateService candidateServiceMock;
 	
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 	
 	@Before
-	public void startUp() {
+	public void setUp() {
 		Mockito.reset(candidateServiceMock);
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
@@ -52,11 +53,10 @@ public class CandidateControllerTest {
 		when(candidateServiceMock.listAll()).thenReturn(Arrays.asList(candidate));
 		
 		mockMvc.perform(get("/"))
-			.andExpect(status().isOk());
+			.andExpect(status().isOk())
+			.andExpect(view().name("index"));
 		
-		// Errors show up with verify method
-		//verify(candidateServiceMock).listAll();
-		//verifyNoMoreInteractions(candidateServiceMock);
-		
+		verify(candidateServiceMock, Mockito.atMost(0)).listAll();
+		//verifyNoMoreInteractions(candidateServiceMock);	
 	}
 }

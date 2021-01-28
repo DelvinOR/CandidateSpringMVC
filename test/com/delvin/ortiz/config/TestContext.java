@@ -10,7 +10,7 @@ import com.delvin.ortiz.candidate.CandidateService;
 @Configuration
 public class TestContext {
 	
-	@Bean
+	@Bean(name = "candidateServiceMockBean")
 	public CandidateService candidateService() {
 		return Mockito.mock(CandidateService.class);
 	}
