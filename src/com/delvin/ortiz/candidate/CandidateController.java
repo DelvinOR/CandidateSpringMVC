@@ -18,8 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class CandidateController {
 	
 	// Instance of Customer service is injected
-	@Autowired
+	//@Autowired
 	private CandidateService candidateService;
+	
+	public CandidateController(CandidateService candidateService) {
+		this.candidateService = candidateService;
+	}
 	
 	@RequestMapping("/")
 	public ModelAndView home() {

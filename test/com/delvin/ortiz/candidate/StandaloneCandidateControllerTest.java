@@ -2,6 +2,7 @@ package com.delvin.ortiz.candidate;
 
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.atMost;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,7 +28,7 @@ public class StandaloneCandidateControllerTest {
 	
 	@Before
 	public void setUp() {
-		this.mockMvc = MockMvcBuilders.standaloneSetup(new CandidateController())
+		this.mockMvc = MockMvcBuilders.standaloneSetup(new CandidateController(candidateServiceMock))
 				.setViewResolvers(getViewResolver())
 				.build();
 	}
@@ -49,7 +50,7 @@ public class StandaloneCandidateControllerTest {
 		mockMvc.perform(get("/"))
 			.andExpect(status().isOk());
 		
-		verify(candidateServiceMock, atMost(0));
-		
+		verify(candidateServiceMock, atMost(1)).listAll();
+		verifyNoMoreInteractions(candidateServiceMock);
 	}
 }
