@@ -44,6 +44,10 @@ public class Candidate {
 		this.email = email;
 	}
 	
+	// Sample method used for unit testing with JUnit
+	public String fooMethod() {
+		return "foo";
+	}
 	
 	
 }
