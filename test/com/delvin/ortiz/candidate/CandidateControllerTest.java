@@ -37,7 +37,7 @@ public class CandidateControllerTest {
 	private CandidateService candidateServiceMock;
 	
 	@Autowired
-    private WebApplicationContext webApplicationContext;
+	private WebApplicationContext webApplicationContext;
 	
 	@Before
 	public void startUp() {
