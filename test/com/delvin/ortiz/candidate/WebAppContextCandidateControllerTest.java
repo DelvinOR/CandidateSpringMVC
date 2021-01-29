@@ -1,6 +1,7 @@
 package com.delvin.ortiz.candidate;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,7 +12,9 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,8 +36,7 @@ public class WebAppContextCandidateControllerTest {
 	
 	private MockMvc mockMvc;
 	
-	@Autowired
-	@Qualifier(value = "candidateServiceMockBean")
+	@Mock
 	private CandidateService candidateServiceMock;
 	
 	@Autowired
@@ -42,10 +44,17 @@ public class WebAppContextCandidateControllerTest {
 	
 	@Before
 	public void setUp() {
-		Mockito.reset(candidateServiceMock);
+		//candidateServiceMock = Mockito.mock(CandidateService.class);
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	
+	@Before
+	public void reset() {
+		MockitoAnnotations.initMocks(this);
+	}
+	
+	// This way of testing the CandidateController will cause the WebApplicationContext
+	// to ignore our instance of candidateServiceMock with zero interactions to it
 	@Test
 	public void listAll_ShouldCandidateRecordsToModelAndRenderIndex() throws Exception{
 		Candidate candidate = new Candidate("delvin", "delvin@email.com");
@@ -57,6 +66,6 @@ public class WebAppContextCandidateControllerTest {
 			.andExpect(view().name("index"));
 		
 		verify(candidateServiceMock, Mockito.atMost(0)).listAll();
-		//verifyNoMoreInteractions(candidateServiceMock);	
+		verifyNoMoreInteractions(candidateServiceMock);	
 	}
 }

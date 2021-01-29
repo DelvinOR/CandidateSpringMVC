@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CandidateController {
 	
-	// Instance of Customer service is injected
-	//@Autowired
+	// Instance of Customer service is injected thanks to our WebApplicationContext
+	@Autowired
 	private CandidateService candidateService;
 	
+	// Temporary constructor for StandaloneCandidateControllerTest class
 	public CandidateController(CandidateService candidateService) {
 		this.candidateService = candidateService;
 	}

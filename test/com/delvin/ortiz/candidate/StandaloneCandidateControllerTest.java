@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -50,7 +51,7 @@ public class StandaloneCandidateControllerTest {
 		mockMvc.perform(get("/"))
 			.andExpect(status().isOk());
 		
-		verify(candidateServiceMock, atMost(1)).listAll();
+		verify(candidateServiceMock, Mockito.atLeast(1)).listAll();
 		verifyNoMoreInteractions(candidateServiceMock);
 	}
 }
