@@ -1,3 +1,9 @@
 # CandidateSpringMVC
 
-Candidate manager web application to create, retrieve, update, and delete (CRUD) candidate records from a database in MySQL. This is a SpringMVC application that works with Spring Data JPA and Hibernate. Programmed in Java and JSP.
+SpringMVC application to create, retrieve, update, and delete (CRUD) candidate records to a database in MySQL
+
+Successfully adds over 50 records of candidates
+
+Unit and integration testing performed with JUnit, Mockito, and Spring Test
+
+View designed in JSP and backend programmed with Java, Spring Data JPA, and Hibernate
