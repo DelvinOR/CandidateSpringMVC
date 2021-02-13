@@ -1,6 +1,6 @@
 # CandidateSpringMVC
 
-SpringMVC application to create, retrieve, update, and delete (CRUD) candidate records to a database in MySQL
+Spring MVC application to create, retrieve, update, and delete (CRUD) candidate records to a database in MySQL
 
 Successfully adds over 50 records of candidates
 
